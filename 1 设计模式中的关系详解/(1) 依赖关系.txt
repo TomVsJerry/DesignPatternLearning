@@ -1,0 +1,80 @@
+概念：
+   依赖关系描述了一种，“类与类之间” 一种 “使用与被使用” 的关系
+   依赖关系在Java中的具体代码表现形式为B为A的构造器或方法中的局部变量、方法或构造器的参数、方法的返回值，或者A调用B的静态方法
+   简单来说，就是 A 类中, 出现了 B 类
+
+例子：
+   汽车依赖汽油
+
+   // 汽车
+   class Car {
+       // 跑
+       public void run(Petrol petrol) {
+           System.out.println("使用：" + petrol.type + ", 汽车跑了起来~");
+       }
+   }
+
+   // 汽油
+   class Petrol {
+       // 构造
+       public Petrol(String type) {
+           this.type = type;
+       }
+       // 汽油型号
+       public String type;
+   }
+
+   public class YiLai {
+       public static void main(String[] args) {
+           // 使用场景
+           Car car = new Car();
+           car.run(new Petrol("93号汽油"));
+       }
+   }
+
+   run() 方法传递的参数， 汽车依赖了汽油。
+   汽车对汽油发生了依赖关系，那么就是汽车对汽油产生了耦合。
+
+对依赖关系写法的拓展
+   以上面代码为例，如果汽车现在需要 柴油 那么 run() 方法的参数就要进行修改。这就违反了 开放-封闭 原则，在这里我们套用一下 里氏替换原则 将代码代码进行一些修改。
+
+   // 油（基类）
+   abstract class Oil {
+       // 油型号
+       protected String type;
+   }
+
+   // 汽油
+   class Petrol extends Oil{
+       // 构造
+       public Petrol(String type) {
+           super.type = type;
+       }
+   }
+   // 柴油
+   class DieselOil extends Oil{
+       // 构造
+       public DieselOil(String type) {
+           super.type = type;
+       }
+   }
+
+   // 汽车
+   class Car {
+       // 跑
+       public void run(Oil oil) {
+           System.out.println("使用：" + oil.type + ", 汽车跑了起来~");
+       }
+   }
+   public class YiLai {
+
+       public static void main(String[] args) {
+           // 使用场景
+           Car car = new Car();
+           // 不论是用什么油，都可以在不修改汽车类的基础上尽行变更
+           car.run(new Petrol("96号汽油"));
+           car.run(new DieselOil("69号柴油"));
+       }
+   }
+
+   再出现其他油的类型的时候继承 Oil 抽象类，进行拓展即可，并且Car类中也不用进行代码修改。
