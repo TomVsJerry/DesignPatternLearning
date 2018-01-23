@@ -10,11 +10,19 @@
     - 选中源码库 : ![选中源码库](select_module.png)
   - 依赖Module
     - 打开Project Structure
+    <div align=center>
     ![](module_dependency_1.png)
+    </div>
     - 选中主工程，也就是app，然后点击右上角的+号，选择Module Dependency。
+
+    <div align=center>
     ![](module_dependency_2.png)
+    <div>
     - 选择Module Dependency 最后选择刚才添加进来的:library
+
+    <div align=center>
     ![](module_dependency_3.png)
+    <div>
  - (3) AndroidStudio中直接通过Gradle的方式添加第三方开源库
   -
 ## 2 第三方插件使用
