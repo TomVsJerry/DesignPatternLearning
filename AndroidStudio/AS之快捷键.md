@@ -36,6 +36,8 @@
     - ctrl + shift + 加/减  展开/折叠全部代码块
     - ctrl + shift + V 弹出最近复制的粘贴列表，可供方便选择
 
+    - ctrl + shift + Enter 自动补齐括号
+
   - 一般使用平率
     - ctrl + shift + 上/下方向键 移动代码
     - ctrl + w 扩大选中范围
